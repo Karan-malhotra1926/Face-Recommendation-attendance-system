@@ -1,0 +1,17 @@
+<h2>Pending Users</h2>
+
+{% for u in pending %}
+<p>
+{{u}} 
+<a href="/approve/{{u}}">Approve</a> 
+<a href="/reject/{{u}}">Reject</a>
+</p>
+{% endfor %}
+
+<hr>
+
+<h2>Approved Users</h2>
+
+{% for u in approved %}
+<p>{{u}}</p>
+{% endfor %}

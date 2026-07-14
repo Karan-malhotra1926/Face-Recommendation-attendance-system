@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mobile Camera</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="text-align:center">
+
+<h2>📱 Mobile Face Attendance</h2>
+
+<video id="video" width="300" autoplay></video>
+<br><br>
+
+<button onclick="capture()">Capture</button>
+
+<p id="result"></p>
+
+<script>
+const video = document.getElementById('video');
+
+// 📱 open mobile camera
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+});
+
+// 📸 capture image
+function capture(){
+    let canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0);
+
+    let data = canvas.toDataURL("image/jpeg");
+
+    let formData = new FormData();
+    formData.append("image", data);
+
+    fetch("/upload", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(name => {
+        document.getElementById("result").innerText = "Detected: " + name;
+    });
+}
+</script>
+
+</body>
+</html>

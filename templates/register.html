@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+</head>
+
+<body style="text-align:center">
+
+<h2>👤 Register Face</h2>
+
+<input type="text" id="name" placeholder="Enter Name">
+<br><br>
+
+<img src="{{ url_for('video') }}" width="400"><br><br>
+
+<button onclick="start()">Register</button>
+
+<p id="status"></p>
+
+<script>
+function start(){
+    let name = document.getElementById("name").value;
+
+    fetch(`/capture?name=${name}`)
+    .then(res => res.text())
+    .then(msg => {
+        document.getElementById("status").innerText = msg;
+    });
+}
+</script>
+
+</body>
+</html>
