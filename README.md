@@ -121,7 +121,7 @@ The repository already contains the trained model (`trainer.yml`) and label mapp
 **Karan Malhotra**
 
 Email- km367431@gmail.com
-GitHub: https://github.com/Karan1926
+GitHub: https://github.com/Karan-malhotra1926
 Linkedin: www.linkedin.com/in/karan-malhotra-b804b7377
 
 ---
